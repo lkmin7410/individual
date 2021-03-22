@@ -10,6 +10,7 @@ public class ContentDTO {
 	private Date regdate;
 	private String writer;
 	private int hit;
+	private String img;
 	
 	public ContentDTO(String title, String content, Date regdate, String writer, int hit) {
 		this.title = title;
@@ -18,16 +19,21 @@ public class ContentDTO {
 		this.writer = writer;
 		this.hit = hit;
 	}
-	public ContentDTO(String title, String content, String writer) {
+	public ContentDTO(String title, String content, String writer, String img) {
 		this.title = title;
 		this.content = content;
 		this.writer = writer;
+		this.img = img;
 	}
 	public ContentDTO() {}
 
 	
-	
-	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public int getSeq() {
 		return seq;
 	}

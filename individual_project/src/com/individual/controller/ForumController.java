@@ -29,8 +29,8 @@ public class ForumController extends HttpServlet {
 		
 		int count = sv.forumCount(search);
 		
-		System.out.println(search);
-		System.out.println(count);
+//		System.out.println(search);
+//		System.out.println(count);
 		
 		String page1 = req.getParameter("page");
 		int page = 1;
@@ -42,9 +42,9 @@ public class ForumController extends HttpServlet {
 		List<ContentDTO> list = new ArrayList<ContentDTO>();
 
 		list = sv.getForum_list(page, count, search);
-		for (ContentDTO a : list) {
-			System.out.println(a.getTitle());
-		}
+//		for (ContentDTO a : list) {
+//			System.out.println(a.getTitle());
+//		}
 		req.setAttribute("f_list", list);
 		req.setAttribute("count", count);
 

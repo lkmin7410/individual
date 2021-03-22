@@ -147,6 +147,18 @@ section .inner .upload_zone ul li img {
 		3px 4px -3px #000, 0 1px 2px rgb(0 0 0/ 20%);
 	border-radius: 2px;
 }
+
+form #image_container {
+	width: 500px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+form #image_container img {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
 }
 </style>
 
@@ -175,7 +187,7 @@ section .inner .upload_zone ul li img {
 			</form>
 
 			<div class="right_menu">
-					<c:if test="${not empty sessionScope.session_id}">
+				<c:if test="${not empty sessionScope.session_id}">
 					<a href="Main">Log out</a>
 				</c:if>
 				<c:if test="${empty sessionScope.session_id}">
@@ -195,21 +207,31 @@ section .inner .upload_zone ul li img {
 			<div class="hr">
 				<hr>
 			</div>
-			
-			<form action="Upload" method="post" enctype="multpart/form-data">
+
+			<form method="post" enctype="multipart/form-data">
 				<div class="upload_zone">
-
-					<div class="file">
-						<input type="file" name="file_name" value="파일">
-					</div>
-
-					<ul>
-						<li><img alt="" src=""></li>
-					</ul>
+					<input type="file" id="image" accept="image/*"
+						onchange="setThumbnail(event);" name="file" />
+					<div id="image_container"></div>
+					
+					<script>
+						function setThumbnail(event) {
+							var reader = new FileReader();
+							reader.onload = function(event) {
+								var img = document.createElement("img");
+								img.setAttribute("src", event.target.result);
+								document.querySelector("div#image_container")
+										.appendChild(img);
+							};
+							reader.readAsDataURL(event.target.files[0]);
+						}
+					</script>
+					
 				</div>
-			
+
 				<div class="button">
-					<input type="submit" name="file_upload" value="업로드">
+					<input type="text" name="tag">
+					<input type="submit" value="업로드">
 				</div>
 			</form>
 		</div>

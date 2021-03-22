@@ -548,7 +548,7 @@ public class Service {
 	//글 쓰기
 	public void content_write(ContentDTO cd) {
 
-		String sql = "insert into forum(title,content,writer) values(?,?,?)";
+		String sql = "insert into forum(title,content,writer,img) values(?,?,?,?)";
 
 		try {
 			Class.forName(driver);
@@ -558,6 +558,7 @@ public class Service {
 			psmt.setString(1, cd.getTitle());
 			psmt.setString(2, cd.getContent());
 			psmt.setString(3, cd.getWriter());
+			psmt.setString(4, cd.getImg());
 			psmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -649,6 +650,7 @@ public class Service {
 				cd.setRegdate(rs.getDate("regdate"));
 				cd.setWriter(rs.getString("writer"));
 				cd.setHit(rs.getInt("hit"));
+				cd.setImg(rs.getString("img"));
 			}
 
 		} catch (Exception e) {
