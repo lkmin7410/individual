@@ -151,6 +151,28 @@ section .inner .upload_zone ul li img {
 .content img {
 	width: 50%;
 }
+
+.comment_zone {
+	color: white;
+	
+}
+.comment_zone ul{
+
+}
+
+.comment_zone li {
+	width: calc(100% / 3);
+	float: left;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.text_bar {
+margin-top:50px;
+width: 700px;
+height: 150px;
+
+}
 }
 </style>
 
@@ -180,7 +202,7 @@ section .inner .upload_zone ul li img {
 
 			<div class="right_menu">
 				<c:if test="${not empty sessionScope.session_id}">
-					<a href="Main">Log out</a>
+					<a href="Logout">Log out</a>
 				</c:if>
 				<c:if test="${empty sessionScope.session_id}">
 					<a href="logIn">Log in</a>
@@ -222,27 +244,37 @@ section .inner .upload_zone ul li img {
 
 			<div class="button">
 				<div class="content">
-				<hr>
-					<p>이곳은 댓글창으로 사용 예정</p>
-					
+					<hr>
 					<form action="ForumDetail" method="post">
-					
-					
 						<div class="input">
-							
+
 							<input type="hidden" name="userid" value="${session_id}">
 							<input type="hidden" name="seq" value="${param.seq}">
-							<c:if test="${not empty sessionScope.nick}">
+							<%-- <c:if test="${not empty sessionScope.nick}">
 							
-							</c:if>
+							</c:if> --%>
 							<input type="hidden" name="img_name" value="${list.img}">
 							<c:if test="${session_id != null}">
-								<input type="text" name="comment">
+								<input type="text" name="comment" class="text_bar">
 								<input type="submit" value="입력">
 							</c:if>
 							<c:if test="${session_id == null}">
 								<input type="text" value="로그인을 해주세요.">
 							</c:if>
+
+							<div class="comment_zone">
+							<ul>
+								<c:forEach var="i" items="${f_list}">
+									<li class="id">${i.userid}</li>
+									<li class="comment">${i.comment}</li>
+									<li class="regdate">${i.regdate}</li>
+									<hr>
+								</c:forEach>
+								</ul>
+							</div>
+
+
+
 
 						</div>
 					</form>

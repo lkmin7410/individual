@@ -219,7 +219,7 @@ public class Service {
 		return io;
 	}
 
-	// 몇개 보여줄지 아직 제대로 이해 못함
+	
 	// top 게시판 글 보여주기
 	// 조회수 순으로 
 	public List<imgDTO> getImgPath(int page, int result) {
@@ -705,10 +705,10 @@ public class Service {
 		}
 	}
 	
-	
+	//게시글의 댓글 리스트 불러오기
 	public List<Forum_commentDTO> forum_comment_list(String seq) {
 
-		String sql = "select * from forum_comment where seq = ?";
+		String sql = "select * from forum_comment where seq = ? order by regdate desc";
 
 		List<Forum_commentDTO> list = new ArrayList<Forum_commentDTO>();
 
@@ -722,10 +722,11 @@ public class Service {
 
 			while (rs.next()) {
 				Forum_commentDTO fd = new Forum_commentDTO();
-				fd.setImg_name(rs.getString(1));
-				fd.setComment(rs.getString(2));
-				fd.setRegdate(rs.getDate(3));
-				fd.setUserid(rs.getString(4));
+				fd.setSeq(rs.getString(1));
+				fd.setImg_name(rs.getString(2));
+				fd.setComment(rs.getString(3));
+				fd.setRegdate(rs.getDate(4));
+				fd.setUserid(rs.getString(5));
 				list.add(fd);
 			}
 
