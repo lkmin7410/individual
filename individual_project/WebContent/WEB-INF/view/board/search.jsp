@@ -75,6 +75,10 @@ section .choice {
 	height: 55px;
 }
 
+section .choice h1{
+color: white;
+}
+
 section .img_list ul {
 	text-align: center;
 }
@@ -118,7 +122,7 @@ font-size: 20px;
 	<header>
 		<div class="top">
 			<div class="logo">
-				<a href="Main"><h1>Wall Papers</h1></a>
+				<a href="Main"><h1>W Share</h1></a>
 			</div>
 			<ul class="menu">
 				<li><a href="New">NEW</a></li>
@@ -151,8 +155,8 @@ font-size: 20px;
 	<section>
 		<div class="inner">
 			<div class="choice">
-				<h1>Top List</h1>
-				<p>가장 인기 있는 배경</p>
+				<h1>Search</h1>
+				<p></p>
 			</div>
 
 			<div class="img_list">

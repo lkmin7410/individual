@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+<%@ page import="java.net.URL" %>
+<%@ page import="java.net.HttpURLConnection" %>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.InputStreamReader" %>
 <!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <html>
@@ -11,6 +18,8 @@
 <script type="text/javascript" src="${root}/js/user/signUp.js"></script>
 </head>
 <body>
+<a href="${apiURL}">네이버 로그인</a>
+<img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG">
 	<form id="joinform" name="joinform" action="logIn" method="post"
 		onsubmit="return createFrom(this)">
 

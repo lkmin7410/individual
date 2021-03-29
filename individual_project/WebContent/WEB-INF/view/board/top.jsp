@@ -125,7 +125,7 @@ section .button ul li a {
 	<header>
 		<div class="top">
 			<div class="logo">
-				<a href="Main"><h1>Wall Papers</h1></a>
+				<a href="Main"><h1>W Share</h1></a>
 			</div>
 			<ul class="menu">
 				<li><a href="New">NEW</a></li>

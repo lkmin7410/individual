@@ -11,6 +11,7 @@ import com.individual.connection.ConnectionProvider;
 import com.individual.connection.jdbcUtil;
 import com.individual.entity.BoardDTO;
 import com.individual.entity.ContentDTO;
+import com.individual.entity.Forum_commentDTO;
 import com.individual.entity.UserBeans;
 import com.individual.entity.imgDTO;
 
@@ -69,6 +70,26 @@ public class Service {
 			psmt.setString(3, ub.getName());
 			psmt.setString(4, ub.getEmail());
 			psmt.setString(5, "Y");
+
+			psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//네이버 로그인
+	public void naver_login(UserBeans ub) {
+		String sql = "insert into user(id,naver_name,naver_email,naver_nickname) values(?,?,?,?)";
+
+		try {
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url, root, pw);
+
+			PreparedStatement psmt = con.prepareStatement(sql);
+			psmt.setString(1, ub.getId());
+			psmt.setString(2, ub.getNaver_name());
+			psmt.setString(3, ub.getNaver_email());
+			psmt.setString(4, ub.getNaver_nickname());
 
 			psmt.executeUpdate();
 
@@ -545,6 +566,8 @@ public class Service {
 		}
 	}
 	
+	
+	
 	//글 쓰기
 	public void content_write(ContentDTO cd) {
 
@@ -659,6 +682,60 @@ public class Service {
 
 		return cd;
 	}
+	
+	
+	//게시글에 댓글쓰기
+	public void forum_comment_write(Forum_commentDTO fd) {
+
+		String sql = "insert into forum_comment(seq,img_name,comment,userid) values(?,?,?,?)";
+
+		try {
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url, root, pw);
+			PreparedStatement psmt = con.prepareStatement(sql);
+			
+			psmt.setString(1, fd.getSeq());
+			psmt.setString(2, fd.getImg_name());
+			psmt.setString(3, fd.getComment());
+			psmt.setString(4, fd.getUserid());
+			psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public List<Forum_commentDTO> forum_comment_list(String seq) {
+
+		String sql = "select * from forum_comment where seq = ?";
+
+		List<Forum_commentDTO> list = new ArrayList<Forum_commentDTO>();
+
+		try {
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url, root, pw);
+
+			PreparedStatement psmt = con.prepareStatement(sql);
+			psmt.setString(1, seq);
+			ResultSet rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				Forum_commentDTO fd = new Forum_commentDTO();
+				fd.setImg_name(rs.getString(1));
+				fd.setComment(rs.getString(2));
+				fd.setRegdate(rs.getDate(3));
+				fd.setUserid(rs.getString(4));
+				list.add(fd);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
 	
 	//게시글 조회수
 	public void forum_click_count(String seq) {

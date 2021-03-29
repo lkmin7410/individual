@@ -27,6 +27,7 @@ public class DetailController extends HttpServlet {
 		System.out.println(comment);
 		
 		String userid = req.getParameter("userid");
+
 		BoardDTO bd = new BoardDTO();
 		bd.setImg_name(img_name);
 		bd.setComment(comment);
@@ -41,6 +42,7 @@ public class DetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String img_name = req.getParameter("img_name");
 		Service sv = new Service();
+		
 		sv.click_count(img_name);
 		List<BoardDTO>c_list = sv.comment_list(img_name);
 		imgDTO img = sv.getImgPath_full(img_name);

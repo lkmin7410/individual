@@ -268,7 +268,7 @@ img {
 		<div class="top">
 			<div class="logo">
 				<a href="Main">
-					<h1>Wall Papers</h1>
+					<h1>W Share</h1>
 				</a>
 			</div>
 			<ul class="menu">
@@ -288,10 +288,10 @@ img {
 
 			</form>
 			<div class="right_menu">
-				<c:if test="${not empty sessionScope.session_id}">
+				<c:if test="${not empty sessionScope.session_id || not empty sessionScope.state}">
 					<a href="Logout">Log out</a>
 				</c:if>
-				<c:if test="${empty sessionScope.session_id}">
+				<c:if test="${empty sessionScope.session_id || empty sessionScope.state}">
 					<a href="logIn">Log in</a>
 					<a href="signUp">Sign Up</a>
 				</c:if>
@@ -350,7 +350,11 @@ img {
 					</div>
 					<form action="Detail" method="post">
 						<div class="input">
+							
 							<input type="hidden" name="userid" value="${session_id}">
+							<c:if test="${not empty sessionScope.nick}">
+							
+							</c:if>
 							<input type="hidden" name="img_name" value="${full.img_name}">
 							<c:if test="${session_id != null}">
 								<input type="text" name="comment">

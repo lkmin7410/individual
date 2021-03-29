@@ -7,7 +7,9 @@ public class UserBeans {
 	private String name;
 	private String email;
 	private String flag;
-	
+	private String naver_name;
+	private String naver_email;
+	private String naver_nickname;
 	
 	public UserBeans(String id, String pw, String name, String email) {
 		super();
@@ -27,6 +29,36 @@ public class UserBeans {
 		super();
 		this.id = id;
 		this.pw = pw;
+	}
+
+	
+	public String getNaver_name() {
+		return naver_name;
+	}
+
+
+	public void setNaver_name(String naver_name) {
+		this.naver_name = naver_name;
+	}
+
+
+	public String getNaver_email() {
+		return naver_email;
+	}
+
+
+	public void setNaver_email(String naver_email) {
+		this.naver_email = naver_email;
+	}
+
+
+	public String getNaver_nickname() {
+		return naver_nickname;
+	}
+
+
+	public void setNaver_nickname(String naver_nickname) {
+		this.naver_nickname = naver_nickname;
 	}
 
 

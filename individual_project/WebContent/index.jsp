@@ -172,7 +172,7 @@ opacity: 0.5;
 <body>
 	<header id="top">
 		<div class="logo">
-			<h1>Wall Papers</h1>
+			<h1>W Share</h1>
 		</div>
 
 

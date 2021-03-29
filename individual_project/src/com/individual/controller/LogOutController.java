@@ -29,8 +29,12 @@ public class LogOutController extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		
+		if(session.getAttribute("session_id") != null || session.getAttribute("nick") != null) {
 		session.removeAttribute("session_id");
-		
-		resp.sendRedirect("/individual_project/Main");
+		session.removeAttribute("nick");
+		}else {
+		session.removeAttribute("state");
+		}
+		resp.sendRedirect("/individual_Project/Main");
 	}
 }
