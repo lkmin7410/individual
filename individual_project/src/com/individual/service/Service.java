@@ -588,12 +588,52 @@ public class Service {
 			e.printStackTrace();
 		}
 	}
+	//글 수정하기
+	public void edit_content_write(ContentDTO cd) {
+
+		String sql = "UPDATE forum SET title=?, content=?, img=?, WHERE seq=? LIMIT 1;";
+
+		try {
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url, root, pw);
+			PreparedStatement psmt = con.prepareStatement(sql);
+			
+			psmt.setString(1, cd.getTitle());
+			psmt.setString(2, cd.getContent());
+			psmt.setString(3, cd.getImg());
+			psmt.setInt(4, cd.getSeq());
+			psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//글 삭제하기
+		public void remove_content_write(int seq) {
+
+			String sql = "UPDATE forum SET delflag=? WHERE seq=? LIMIT 1;";
+
+			try {
+				Class.forName(driver);
+				Connection con = DriverManager.getConnection(url, root, pw);
+				PreparedStatement psmt = con.prepareStatement(sql);
+				
+				psmt.setString(1, "Y");
+				psmt.setInt(2, seq);
+			
+				psmt.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	
 	//글 갯수 카운트
 	public int forumCount(String sc) {
 		int result = 0;
 		String sql = "select count(c.title) from (select distinct *"
-				+ "	from forum where title like ?) as c";
+				+ "	from forum where title like ? and delflag='N') as c";
 
 		try {
 			Class.forName(driver);
@@ -621,7 +661,7 @@ public class Service {
 		int lastNum = (startNum - 9);
 
 		String sql = "select * from (select @rownum:=@rownum+1 as rownum, n.* from"
-				+ " (select * from forum where title like ?)n ,"
+				+ " (select * from forum where title like ? and delflag = 'N')n ,"
 				+ "	(select @rownum:=0)as r) s"
 				+ "	where rownum between ? and ? order by rownum desc";
 		

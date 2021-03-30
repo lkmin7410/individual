@@ -11,6 +11,7 @@ public class ContentDTO {
 	private String writer;
 	private int hit;
 	private String img;
+	private String delflag;
 	
 	public ContentDTO(String title, String content, Date regdate, String writer, int hit) {
 		this.title = title;
@@ -25,9 +26,31 @@ public class ContentDTO {
 		this.writer = writer;
 		this.img = img;
 	}
+	
+	public ContentDTO(String title, String content, String writer, String img, int seq) {
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.img = img;
+		this.seq = seq;
+	}
+	public ContentDTO(String title, String content, String writer, String img, int seq,String delflag) {
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.img = img;
+		this.seq = seq;
+	}
+	
 	public ContentDTO() {}
 
-	
+
+	public String getDelflag() {
+		return delflag;
+	}
+	public void setDelflag(String delflag) {
+		this.delflag = delflag;
+	}
 	public String getImg() {
 		return img;
 	}

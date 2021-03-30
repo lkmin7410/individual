@@ -22,7 +22,9 @@ public class ForumController extends HttpServlet {
 
 		String search1 = req.getParameter("search");
 		String search = "";
-
+//		String seq1= req.getParameter("seq");
+//		int seq = Integer.parseInt(seq1);
+		
 		if (search1 != null) {
 			search = search1;
 		}
@@ -42,6 +44,8 @@ public class ForumController extends HttpServlet {
 		List<ContentDTO> list = new ArrayList<ContentDTO>();
 
 		list = sv.getForum_list(page, count, search);
+		
+//		sv.remove_content_write(seq);
 //		for (ContentDTO a : list) {
 //			System.out.println(a.getTitle());
 //		}

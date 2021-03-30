@@ -45,7 +45,9 @@ public class Forum_Detail_Controller extends HttpServlet {
 		System.out.println("조회수" + list.getHit());
 		
 		List<Forum_commentDTO> f_list = sv.forum_comment_list(seq);
+		int f_seq = Integer.parseInt(seq);
 		
+		req.setAttribute("seq", f_seq);
 		req.setAttribute("f_list", f_list);
 		req.setAttribute("list", list);
 

@@ -22,8 +22,8 @@ import com.individual.service.Service;
 		maxRequestSize = 1024 * 1024 * 5 * 5 // 전체요청에 대한 파일 용량
 )
 
-@WebServlet("/Write")
-public class WriteController extends HttpServlet {
+@WebServlet("/Edit_Write")
+public class Edit_WriteController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,7 +34,8 @@ public class WriteController extends HttpServlet {
 		String writer = req.getParameter("session_id");
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		
+		String seq1 = req.getParameter("seq");
+		int seq = Integer.parseInt(seq1);
 		
 		Collection<Part> parts = req.getParts();
 		StringBuilder builder = new StringBuilder();
@@ -77,15 +78,16 @@ public class WriteController extends HttpServlet {
 
 		img = fileName;
 
-		ContentDTO cd = new ContentDTO(title, content, writer, img);
+		ContentDTO cd = new ContentDTO(title, content, writer, img,seq);
 
-		sv.content_write(cd);
+		sv.edit_content_write(cd);
 
 		resp.sendRedirect("Forum");
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/view/board/write.jsp").forward(req, resp);
+		
+		req.getRequestDispatcher("/WEB-INF/view/board/edit_write.jsp").forward(req, resp);
 	}
 }

@@ -216,7 +216,10 @@ height: 150px;
 		<div class="inner">
 			<div class="text">
 				<h1>W Share</h1>
-
+				<c:if test="${sessionScope.session_id == list.writer}">
+				<a href="Edit_Write?seq=${seq}">글 수정</a>
+				<a href="Remove_Forum?seq=${seq}">글 삭제</a>
+				</c:if>
 			</div>
 			<div class="hr">
 				<hr>
@@ -231,9 +234,6 @@ height: 150px;
 						<img src="${root}/upload/${list.img}">
 					</c:if>
 				</div>
-
-
-
 			</div>
 
 			<div class="button">
@@ -272,10 +272,6 @@ height: 150px;
 								</c:forEach>
 								</ul>
 							</div>
-
-
-
-
 						</div>
 					</form>
 				</div>
