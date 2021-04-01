@@ -170,7 +170,7 @@ section .inner .upload_zone ul li img {
 .text_bar {
 margin-top:50px;
 width: 700px;
-height: 150px;
+height: 75px;
 
 }
 }

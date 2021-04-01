@@ -45,13 +45,17 @@ public class Logininfo extends HttpServlet{
         
         JSONObject jo;
         
+        
+        
         try {
         	jo = (JSONObject) jp.parse(responseBody);
+        	System.out.println(jo);
         	JSONObject jo2 = (JSONObject) jo.get("response");
         	String id = "naver_"+jo2.get("id").toString();
         	String name = jo2.get("name").toString();
         	String email = jo2.get("email").toString();
         	String nickname = jo2.get("nickname").toString();
+        	System.out.println("jo2 :: "+jo2);
         	System.out.println("id: "+id);
         	System.out.println("name: "+name);
         	System.out.println("email: "+email);

@@ -288,10 +288,10 @@ img {
 
 			</form>
 			<div class="right_menu">
-				<c:if test="${not empty sessionScope.session_id || not empty sessionScope.state}">
+				<c:if test="${not empty sessionScope.session_id}">
 					<a href="Logout">Log out</a>
 				</c:if>
-				<c:if test="${empty sessionScope.session_id || empty sessionScope.state}">
+				<c:if test="${empty sessionScope.session_id}">
 					<a href="logIn">Log in</a>
 					<a href="signUp">Sign Up</a>
 				</c:if>

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="${root}/ckeditor/ckeditor.js"></script>
 <style>
 body {
 	background: #171717
@@ -141,9 +143,12 @@ section .inner .upload_zone img {
 	width: 50%;
 }
 
-textarea {
-	position: relative;
-	right: 20px;
+
+#cke_p_content {
+    visibility: inherit;
+    width: 800px;
+    display: inline-block;
+   
 }
 }
 </style>
@@ -212,23 +217,27 @@ textarea {
 								reader.readAsDataURL(event.target.files[0]);
 							}
 						</script>
-						내용
-						<textarea cols="100px" rows="10px" name="content">
-				</textarea>
+
+
+					
+						<textarea name="content" id="p_content"></textarea>
+						<script type="text/javascript">
+							CKEDITOR.replace('p_content', {height : 200, width : 40%});
+						</script>
 					</div>
 
 				</div>
-			
 
-			<div class="button">
-				<div class="content">
-					<input type="hidden" name="session_id"
-				value="${sessionScope.session_id}" /> <input type="submit"
-				value="글 쓰기" />
+
+				<div class="button">
+					<div class="content">
+						<input type="hidden" name="session_id"
+							value="${sessionScope.session_id}" /> <input type="submit"
+							value="글 쓰기" />
+					</div>
 				</div>
 			</div>
-</div>
-			
+
 
 		</section>
 	</form>

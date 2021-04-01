@@ -487,6 +487,53 @@ public class Service {
 
 		return list_sc;
 	}
+	
+	public String Search_translate(String sc) {
+		
+		String sql = "select * from Search_translate where kor = ?";
+		String str = "";
+		
+		try {
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url, root, pw);
+			PreparedStatement psmt = con.prepareStatement(sql);
+			
+			psmt.setString(1, sc);
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				str = rs.getString("eng");
+				
+			}
+			if(str == null || str.equals(null)||str == "" || str.equals("")) {
+				str = sc;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 검색 후 몇개인지 카운트
 	public int contentCount_search(String sc) {

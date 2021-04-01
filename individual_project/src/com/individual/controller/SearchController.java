@@ -20,7 +20,7 @@ public class SearchController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
-		
+
 		HttpSession session = req.getSession();
 		Service sv = new Service();
 		String page1 = req.getParameter("page");
@@ -30,16 +30,16 @@ public class SearchController extends HttpServlet {
 		}
 
 		String sc = req.getParameter("search");
-		System.out.println(sc);
+		String str = sv.Search_translate(sc);
 
-		List<imgDTO> list_sc = sv.search(sc, page);
+		List<imgDTO> list_sc = sv.search(str, page);
 
-		int result = sv.contentCount_search(sc);
+		int result = sv.contentCount_search(str);
 		System.out.println(result);
 
 		req.setAttribute("count", result);
 		req.setAttribute("search", list_sc);
-		
+
 		doGet(req, resp);
 	}
 
@@ -55,13 +55,13 @@ public class SearchController extends HttpServlet {
 
 		String tag = req.getParameter("tag");
 		System.out.println(tag);
-		
+
 		String sc = req.getParameter("search");
-		System.out.println(sc);
+		String str = sv.Search_translate(sc);
 
-		List<imgDTO> list_sc = sv.search(sc, page);
+		List<imgDTO> list_sc = sv.search(str, page);
 
-		int result = sv.contentCount_search(sc);
+		int result = sv.contentCount_search(str);
 		System.out.println(result);
 
 		req.setAttribute("count", result);
